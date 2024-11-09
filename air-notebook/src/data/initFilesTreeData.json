@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Folder 1",
+    "key": "1",
+    "type": "folder",
+    "selectable": false
+  },
+  {
+    "title": "Folder 2",
+    "key": "2",
+    "type": "folder",
+    "selectable": false,
+    "children": [
+      {
+        "title": "Note 1",
+        "key": "3",
+        "type": "note"
+      }
+    ]
+  },
+  {
+    "title": "Note 2",
+    "key": "4",
+    "type": "note"
+  }
+]

@@ -1,0 +1,67 @@
+.ant-tree-draggable-icon{
+    display: none;
+}
+.draggable-tree {
+    height: 100%;
+    overflow-y: auto;
+}
+
+.draggable-tree::-webkit-scrollbar {
+    width: 4px;
+}
+.draggable-tree::-webkit-scrollbar-track {
+    background: transparent;
+}
+.draggable-tree::-webkit-scrollbar-thumb {
+    background-color: #b3b3b3;
+    border-radius: 4px;
+}
+.draggable-tree::-webkit-scrollbar-thumb:hover {
+    background-color: #8a8a8a;
+}
+
+body {
+    margin: 0;
+}
+#root {
+    height: 100vh;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fad0c4, #fbc2eb, #a18cd1);
+    background-size: 300% 300%;
+    animation: gradientAnimation 10s ease infinite;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/*
+replace ant design default styles
+*/
+.ant-layout {
+    background: transparent;
+}
+/*
+customer css applying to ant design components
+*/
+.CUSTOMER_CARD {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.MVP {
+    background: rgba(255, 0, 0, 0);
+}
+
+
+
