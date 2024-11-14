@@ -12,13 +12,12 @@ const CustomHeader = () => {
             className={'CUSTOMER_CARD'}
             style={{
                 display: 'flex',
-                alignItems: 'center',
-                padding: '0 20px',
                 height: '100%',
+                backgroundColor: '#f2f2fd',
             }}
         >
             {/* Left part of the header */}
-            <div style={{ display: 'flex', alignItems: 'center', width: '200px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', width: '200px', }}>
                 <Avatar size="large" icon={<UserOutlined />} />
             </div>
 

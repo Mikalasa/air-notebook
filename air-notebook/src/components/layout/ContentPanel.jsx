@@ -27,14 +27,12 @@ const ContentPanel = ({ selectedNoteId }) => {
     const path = findPathById(treeData, selectedNoteId) || [];
 
     return (
-        <Layout style={{padding: '0 14px 0'}}>
+        <Layout className={'CONTENT-PANEL'} style={{margin: '10px 10px 0 20px'}}>
             <div
                 style={{
-                    backgroundColor: 'rgba(255, 255, 255, 0.6)',
-                    backdropFilter: 'blur(10px)',
-                    borderRadius: '8px',
-                    padding: '10px',
-                    marginBottom: '16px',
+                    backgroundColor: 'white',
+                    borderRadius: '20px 20px 0 0',
+                    padding: '10px 10px 0 30px',
                 }}
             >
                 <Breadcrumb>

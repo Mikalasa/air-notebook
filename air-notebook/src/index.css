@@ -25,9 +25,10 @@ body {
 }
 #root {
     height: 100vh;
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fad0c4, #fbc2eb, #a18cd1);
-    background-size: 300% 300%;
-    animation: gradientAnimation 10s ease infinite;
+    background-color: #f2f2fd;
+    /*background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fad0c4, #fbc2eb, #a18cd1);*/
+    /*background-size: 300% 300%;*/
+    /*animation: gradientAnimation 10s ease infinite;*/
 }
 
 @keyframes gradientAnimation {
@@ -48,19 +49,38 @@ replace ant design default styles
 .ant-layout {
     background: transparent;
 }
+.ant-tree {
+    border-radius: 0;
+    background-color: #f2f2fd;
+}
+.ant-tree-node-content-wrapper:hover {
+    background-color: #d6d6fb;
+    border-radius: 0;
+}
+.ant-btn-primary {
+    background-color:  #a97efa !important;
+}
+
+
+
 /*
 customer css applying to ant design components
 */
 .CUSTOMER_CARD {
     background: white;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
-    transition: transform 0.2s, box-shadow 0.2s;
 }
-
+.CONTENT-PANEL {
+    box-shadow: #6a6aa35e -2px -1px 10px 0;
+    border-radius: 20px;
+}
 .MVP {
     background: rgba(255, 0, 0, 0);
+}
+
+.CREATE {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 

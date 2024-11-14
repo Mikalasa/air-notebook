@@ -37,7 +37,7 @@ const FilesTree = () => {
                 />
             </Dropdown>
             <Tree
-                className="draggable-tree CUSTOMER_CARD"
+                className="draggable-tree"
                 draggable
                 blockNode
                 onDragEnter={(info) => {}}

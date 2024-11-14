@@ -37,13 +37,12 @@ const SideMenuFooter = () => {
         <div
             className={'CUSTOMER_CARD'}
             style={{
-                flex: '0 0 10%',
                 padding: '10px',
-                borderTop: '1px solid #ddd',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 height: '100%',
+                backgroundColor: '#f2f2fd',
             }}
         >
             <Button type="default" shape="circle" icon={<DeleteOutlined />} onClick={showModal} />

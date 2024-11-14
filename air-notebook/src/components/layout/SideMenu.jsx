@@ -16,16 +16,16 @@ const SideMenu = () => {
                 flexDirection: 'column',
             }}
         >
-            <Layout style={{height: '10%', marginBottom: '1rem'}}>
+            <Layout style={{height: '10%', minHeight: '90px',}}>
                 <Header />
             </Layout>
-            <Layout style={{height: '10%', marginBottom: '1rem'}}>
+            <Layout style={{height: '15%', minHeight: '100px',}}>
                 <Create />
             </Layout>
-            <Layout style={{height: '75%', marginBottom: '1rem'}}>
+            <Layout style={{height: '67%',}}>
                 <FilesTree />
             </Layout>
-            <Layout style={{height: '5%', marginBottom: '1rem'}}>
+            <Layout style={{height: '8%', minHeight: '65px',}}>
                 <SideMenuFooter />
             </Layout>
         </div>

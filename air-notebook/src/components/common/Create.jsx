@@ -11,15 +11,18 @@ const Create = () => {
         <div
             className={'CUSTOMER_CARD'}
             style={{
-            padding: '15px',
-            borderBottom: '1px solid #ddd',
-            height: '100%',
+                padding: '0 10px 0 10px',
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                backgroundColor: '#f2f2fd',
             }}>
             <Button type="primary" icon={<PlusOutlined />} block onClick={() => dispatch(addNote())}>
-                New Note
+                Note
             </Button>
             <Button type="default" icon={<PlusOutlined />} block style={{ marginTop: '10px' }} onClick={() => dispatch(addFolder())}>
-                New Folder
+                Folder
             </Button>
         </div>
     );
