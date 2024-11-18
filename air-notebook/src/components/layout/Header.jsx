@@ -9,7 +9,7 @@ const CustomHeader = () => {
 
     return (
         <Header
-            className={'CUSTOMER_CARD'}
+            className={'CUSTOMER_CARD PROFILE'}
             style={{
                 display: 'flex',
                 height: '100%',
