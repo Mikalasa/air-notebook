@@ -31,7 +31,7 @@ const CustomHeader = () => {
             {/* Left part of the header */}
             <div style={{ display: 'flex', alignItems: 'center', width: '200px', }}>
                 <Dropdown overlay={menu} trigger={['click']}>
-                    <Avatar size="large" icon={<UserOutlined />} className="avatar-hover-effect" />
+                    <Avatar size="large" src="/avatar-demo.jpg" icon={<UserOutlined />} className="avatar-hover-effect" />
                 </Dropdown>
             </div>
 
