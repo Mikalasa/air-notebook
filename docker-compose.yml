@@ -1,0 +1,13 @@
+services:
+  frontend:
+    build:
+      context: ./air-notebook  # 前端代码路径
+      dockerfile: Dockerfile   # Dockerfile 文件路径
+    image: air-notebook_frontend:latest  # 自定义镜像名称
+    ports:
+      - "3000:80"  # 映射前端容器的 80 端口到主机的 3000 端口
+    networks:
+      - app-network
+
+networks:
+  app-network:
