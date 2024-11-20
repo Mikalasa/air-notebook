@@ -48,6 +48,7 @@ const SideMenuFooter = () => {
             <Button type="default" shape="circle" icon={<DeleteOutlined />} onClick={showModal} />
 
             <Modal
+                className={'trash-modal'}
                 title="Deleted Notes"
                 visible={isModalVisible}
                 onCancel={handleClose}

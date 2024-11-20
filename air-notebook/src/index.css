@@ -1,11 +1,11 @@
 .ant-tree-draggable-icon{
     display: none;
 }
+
 .draggable-tree {
     height: 100%;
     overflow-y: auto;
 }
-
 .draggable-tree::-webkit-scrollbar {
     width: 4px;
 }
@@ -26,22 +26,8 @@ body {
 #root {
     height: 100vh;
     background-color: #f2f2fd;
-    /*background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fad0c4, #fbc2eb, #a18cd1);*/
-    /*background-size: 300% 300%;*/
-    /*animation: gradientAnimation 10s ease infinite;*/
 }
 
-@keyframes gradientAnimation {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
 
 /*
 replace ant design default styles
@@ -87,5 +73,22 @@ customer css applying to ant design components
     padding: 10px 0 0 20px;
 }
 
-
+.trash-modal .ant-modal-body {
+    min-height: 400px;
+    max-height: 500px;
+    overflow-y: auto;
+}
+.trash-modal .ant-modal-body::-webkit-scrollbar {
+    width: 4px;
+}
+.trash-modal .ant-modal-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+.trash-modal .ant-modal-body::-webkit-scrollbar-thumb {
+    background-color: #b3b3b3;
+    border-radius: 4px;
+}
+.trash-modal .ant-modal-body::-webkit-scrollbar-thumb:hover {
+    background-color: #8a8a8a;
+}
 
