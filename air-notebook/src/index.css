@@ -92,3 +92,10 @@ customer css applying to ant design components
     background-color: #8a8a8a;
 }
 
+.avatar-hover-effect {
+    transition: transform 0.3s ease;
+}
+
+.avatar-hover-effect:hover {
+    transform: scale(1.1);
+}

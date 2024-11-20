@@ -1,11 +1,23 @@
 import React from 'react';
-import { UserOutlined } from '@ant-design/icons';
-import { Layout, Avatar, Breadcrumb } from 'antd';
+import { UserOutlined, LogoutOutlined } from '@ant-design/icons';
+import { Layout, Avatar, Dropdown, Menu } from 'antd';
 
 const { Header } = Layout;
 
 const CustomHeader = () => {
+    const handleLogout = () => {
+        // 处理退出登录的逻辑
+        console.log('Logged out');
+    };
 
+    const menu = (
+        <Menu>
+            <Menu.Item key="logout" icon={<LogoutOutlined />} onClick={handleLogout} danger
+            >
+                退出登录
+            </Menu.Item>
+        </Menu>
+    );
 
     return (
         <Header
@@ -18,7 +30,9 @@ const CustomHeader = () => {
         >
             {/* Left part of the header */}
             <div style={{ display: 'flex', alignItems: 'center', width: '200px', }}>
-                <Avatar size="large" icon={<UserOutlined />} />
+                <Dropdown overlay={menu} trigger={['click']}>
+                    <Avatar size="large" icon={<UserOutlined />} className="avatar-hover-effect" />
+                </Dropdown>
             </div>
 
             {/* Right part of the header as an information bar */}
