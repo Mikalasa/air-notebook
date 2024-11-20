@@ -1,0 +1,24 @@
+.ant-layout {
+    background: transparent;
+}
+
+.ant-tree {
+    border-radius: 0;
+    background-color: #f2f2fd;
+}
+.ant-tree-node-content-wrapper:hover {
+    background-color: #d6d6fb;
+    border-radius: 0;
+}
+
+.ant-btn-primary {
+    background-color:  #a97efa !important;
+}
+
+.ant-tree-draggable-icon{
+    display: none;
+}
+.draggable-tree {
+    height: 100%;
+    overflow-y: auto;
+}

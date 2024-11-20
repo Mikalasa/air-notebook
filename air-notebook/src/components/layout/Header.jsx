@@ -29,10 +29,11 @@ const CustomHeader = () => {
             }}
         >
             {/* Left part of the header */}
-            <div style={{ display: 'flex', alignItems: 'center', width: '200px', }}>
+            <div style={{display: 'flex', alignItems: 'center', width: '200px',}}>
                 <Dropdown overlay={menu} trigger={['click']}>
-                    <Avatar size="large" src="/avatar-demo.jpg" icon={<UserOutlined />} className="avatar-hover-effect" />
+                    <Avatar size="large" className="avatar-hover-effect" />
                 </Dropdown>
+                <span className="avatar-username" title="username12345678910111213141516">username12345678910111213141516</span>
             </div>
 
             {/* Right part of the header as an information bar */}
