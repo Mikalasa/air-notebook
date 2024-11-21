@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Button, Modal, List, Typography } from 'antd';
+import { Button } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
 import { useDispatch } from 'react-redux';
 import { restoreNode } from '../../store/slices/notesSlice';
+import TrashModal from '../modal/TrashModal';
 
 const SideMenuFooter = () => {
     const [isModalVisible, setIsModalVisible] = useState(false);
@@ -10,7 +11,7 @@ const SideMenuFooter = () => {
     const dispatch = useDispatch();
 
     const showModal = () => {
-        // every time the modal is opened, we need to update the deletedNotes state
+        // 每次打开 Modal 时更新 deletedNotes
         const updatedDeletedNotes = JSON.parse(localStorage.getItem('deletedData')) || [];
         setDeletedNotes(updatedDeletedNotes);
         setIsModalVisible(true);
@@ -22,12 +23,12 @@ const SideMenuFooter = () => {
 
     const handleRestore = (key) => {
         dispatch(restoreNode({ key }));
-        const updatedDeletedNotes = deletedNotes.filter(note => note.key !== key);
+        const updatedDeletedNotes = deletedNotes.filter((note) => note.key !== key);
         setDeletedNotes(updatedDeletedNotes);
     };
 
     const handlePermanentDelete = (key) => {
-        const updatedDeletedNotes = deletedNotes.filter(note => note.key !== key);
+        const updatedDeletedNotes = deletedNotes.filter((note) => note.key !== key);
         localStorage.setItem('deletedData', JSON.stringify(updatedDeletedNotes));
         setDeletedNotes(updatedDeletedNotes);
         alert('Note has been permanently deleted.');
@@ -35,7 +36,7 @@ const SideMenuFooter = () => {
 
     return (
         <div
-            className={'CUSTOMER_CARD'}
+            className="CUSTOMER_CARD"
             style={{
                 padding: '10px',
                 display: 'flex',
@@ -46,28 +47,13 @@ const SideMenuFooter = () => {
             }}
         >
             <Button type="default" shape="circle" icon={<DeleteOutlined />} onClick={showModal} />
-
-            <Modal
-                className={'trash-modal'}
-                title="Deleted Notes"
+            <TrashModal
                 visible={isModalVisible}
-                onCancel={handleClose}
-                footer={null}
-            >
-                <List
-                    dataSource={deletedNotes}
-                    renderItem={(item) => (
-                        <List.Item
-                            actions={[
-                                <Button type="link" onClick={() => handleRestore(item.key)}>Restore</Button>,
-                                <Button type="link" danger onClick={() => handlePermanentDelete(item.key)}>Permanently Delete</Button>,
-                            ]}
-                        >
-                            <Typography.Text>{item.title}</Typography.Text>
-                        </List.Item>
-                    )}
-                />
-            </Modal>
+                onClose={handleClose}
+                deletedNotes={deletedNotes}
+                onRestore={handleRestore}
+                onPermanentDelete={handlePermanentDelete}
+            />
         </div>
     );
 };

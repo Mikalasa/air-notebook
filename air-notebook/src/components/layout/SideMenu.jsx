@@ -1,9 +1,9 @@
 import React from 'react';
-import Create from '../common/Create';
-import FilesTree from '../common/FilesTree';
-import SideMenuFooter from '../common/SideMenuFooter';
+import Create from '../widgets/Create';
+import FilesTree from '../widgets/FilesTree';
+import SideMenuFooter from '../widgets/SideMenuFooter';
 import {Layout} from "antd";
-import Header from "./Header";
+import Profile from "../widgets/Profile";
 
 const SideMenu = () => {
 
@@ -17,7 +17,7 @@ const SideMenu = () => {
             }}
         >
             <Layout style={{height: '10%', minHeight: '90px',}}>
-                <Header />
+                <Profile />
             </Layout>
             <Layout style={{height: '15%', minHeight: '100px',}}>
                 <Create />
