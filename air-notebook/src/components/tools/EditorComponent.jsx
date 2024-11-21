@@ -18,7 +18,7 @@ const EditorComponent = ({ selectedNoteId }) => {
 
         console.log(`Initializing Editor.js for note ID: ${selectedNoteId}`);
 
-        // 防止重复初始化
+        // prevent reinitialization
         if (editorRef.current) {
             if (typeof editorRef.current.destroy === 'function') {
                 editorRef.current.destroy();

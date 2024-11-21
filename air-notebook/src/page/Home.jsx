@@ -23,7 +23,7 @@ const Home = () => {
         <Layout className={"MVP"} style={{ height: '100vh'}}>
             <Layout style={{ display: 'flex', flexDirection: 'row', background: 'rgba(255, 0, 0, 0)'}}>
                 <SideMenu />
-                <ContentPanel selectedNoteId={selectedNoteId} />
+                <ContentPanel selectedNoteId={selectedNoteId}/>
             </Layout>
         </Layout>
     );

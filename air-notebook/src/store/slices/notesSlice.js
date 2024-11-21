@@ -1,10 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
-import initFilesTreeData from '../../data/initFilesTreeData.json';
+import demoFilesTreeData from '../../data/demo_filesTreeData.json';
 
-const initialState = {
-    selectedNoteId: null,
-    treeData: JSON.parse(localStorage.getItem('treeData')) || initFilesTreeData,
+
+const initializeState = () => {
+    const user = localStorage.getItem('user');
+    const treeData = user
+        ? JSON.parse(localStorage.getItem('treeData')) || []
+        : demoFilesTreeData;
+    return {
+        selectedNoteId: null,
+        treeData,
+    };
 };
 
 const updateLocalStorageTreeData = (newTreeData) => {
@@ -45,7 +52,7 @@ const restoreNodeToTree = (tree, restoredNode) => {
 
 const notesSlice = createSlice({
     name: 'notes',
-    initialState,
+    initialState: initializeState(),
     reducers: {
         selectNote: (state, action) => {
             state.selectedNoteId = action.payload;
@@ -107,6 +114,10 @@ const notesSlice = createSlice({
             state.treeData = action.payload;
             updateLocalStorageTreeData(state.treeData);
         },
+        setNotes: (state, action) => {
+            state.treeData = action.payload.treeData;
+            updateLocalStorageTreeData(state.treeData);
+        },
     },
 });
 
@@ -119,5 +130,6 @@ export const {
     renameNode,
     deleteNode,
     restoreNode,
+    setNotes,
 } = notesSlice.actions;
 export default notesSlice.reducer;
