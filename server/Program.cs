@@ -14,16 +14,27 @@ builder.Services.AddDbContext<AirNotebookContext>(options =>
 // 添加控制器支持
 builder.Services.AddControllers();
 
+// 修改监听地址为 0.0.0.0:80
+builder.WebHost.UseUrls("http://0.0.0.0:80");
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+
+// 仅在开发环境启用 Swagger。如果需要强制在生产启用，可以移出 if 块。
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Air Notebook API V1");
+    });
 }
 
-app.UseHttpsRedirection();
+// 如果需要 HTTPS 重定向，请启用以下行（生产环境推荐）
+// app.UseHttpsRedirection();
+
+app.UseAuthorization();
 
 // 将控制器映射到路由
 app.MapControllers();

@@ -11,5 +11,38 @@ services:
     networks:
       - app-network
 
+  backend:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    image: air-notebook_backend:latest
+    ports:
+      - "5001:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    volumes:
+      - ./server:/app  # 挂载本地代码到容器
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+  db:
+    image: postgres:15
+    container_name: air-notebook-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: AirNotebookDB
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
 networks:
   app-network:
+
+volumes:
+  postgres_data:
