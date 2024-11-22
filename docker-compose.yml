@@ -1,31 +1,22 @@
 services:
   frontend:
     build:
-      context: ./air-notebook  # 前端代码路径
-      dockerfile: Dockerfile   # Dockerfile 文件路径
-    image: air-notebook_frontend:latest  # 自定义镜像名称
+      context: ./air-notebook
+      dockerfile: Dockerfile
+    image: air-notebook_frontend:latest
     ports:
-      - "3000:3000"  # 映射前端容器的 80 端口到主机的 3000 端口
-    volumes:
-      - ./air-notebook:/app  # 挂载本地代码
-    networks:
-      - app-network
+      - "3000:3000"
 
   backend:
     build:
       context: ./server
       dockerfile: Dockerfile
+      target: final
     image: air-notebook_backend:latest
     ports:
       - "5001:80"
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-    volumes:
-      - ./server:/app  # 挂载本地代码到容器
-    depends_on:
-      - db
-    networks:
-      - app-network
+      - ASPNETCORE_ENVIRONMENT=Production
 
   db:
     image: postgres:15
@@ -38,11 +29,6 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    networks:
-      - app-network
-
-networks:
-  app-network:
 
 volumes:
   postgres_data:
