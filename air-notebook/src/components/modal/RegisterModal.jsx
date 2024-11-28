@@ -5,7 +5,7 @@ import { UserOutlined } from '@ant-design/icons';
 const RegisterModal = ({ visible, onClose, onRegister }) => {
     return (
         <Modal
-            title="注册"
+            title="Register"
             visible={visible}
             onCancel={onClose}
             footer={null}
@@ -18,28 +18,28 @@ const RegisterModal = ({ visible, onClose, onRegister }) => {
             >
                 <Form.Item
                     name="username"
-                    label="用户名"
-                    rules={[{ required: true, message: '请输入用户名' }]}
+                    label="Username"
+                    rules={[{ required: true, message: 'Please enter your username' }]}
                 >
-                    <Input prefix={<UserOutlined />} placeholder="请输入用户名" />
+                    <Input prefix={<UserOutlined />} placeholder="Please enter your username" />
                 </Form.Item>
                 <Form.Item
                     name="password"
-                    label="密码"
-                    rules={[{ required: true, message: '请输入密码' }]}
+                    label="Password"
+                    rules={[{ required: true, message: 'Please enter your password' }]}
                 >
-                    <Input.Password placeholder="请输入密码" />
+                    <Input.Password placeholder="Please enter your password" />
                 </Form.Item>
                 <Form.Item
                     name="confirmPassword"
-                    label="确认密码"
-                    rules={[{ required: true, message: '请再次输入密码' }]}
+                    label="Confirm Password"
+                    rules={[{ required: true, message: 'Please confirm your password' }]}
                 >
-                    <Input.Password placeholder="请再次输入密码" />
+                    <Input.Password placeholder="Please confirm your password" />
                 </Form.Item>
                 <Form.Item>
                     <Button type="primary" htmlType="submit" block>
-                        注册
+                        Register
                     </Button>
                 </Form.Item>
             </Form>

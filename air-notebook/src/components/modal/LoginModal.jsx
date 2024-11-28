@@ -5,7 +5,7 @@ import { UserOutlined } from '@ant-design/icons';
 const LoginModal = ({ visible, onClose, onLogin, onSwitchToRegister }) => {
     return (
         <Modal
-            title="登录"
+            title="Login"
             visible={visible}
             onCancel={onClose}
             footer={null}
@@ -18,26 +18,26 @@ const LoginModal = ({ visible, onClose, onLogin, onSwitchToRegister }) => {
             >
                 <Form.Item
                     name="username"
-                    label="用户名"
-                    rules={[{ required: true, message: '请输入用户名' }]}
+                    label="Username"
+                    rules={[{ required: true, message: 'Please enter your username' }]}
                 >
-                    <Input prefix={<UserOutlined />} placeholder="请输入用户名" />
+                    <Input prefix={<UserOutlined />} placeholder="Please enter your username" />
                 </Form.Item>
                 <Form.Item
                     name="password"
-                    label="密码"
-                    rules={[{ required: true, message: '请输入密码' }]}
+                    label="Password"
+                    rules={[{ required: true, message: 'Please enter your password' }]}
                 >
-                    <Input.Password placeholder="请输入密码" />
+                    <Input.Password placeholder="Please enter your password" />
                 </Form.Item>
                 <Form.Item>
                     <Button type="primary" htmlType="submit" block>
-                        登录
+                        Login
                     </Button>
                 </Form.Item>
                 <Form.Item>
                     <Button type="link" onClick={onSwitchToRegister} block>
-                        没有账号？点击注册
+                        Don't have an account? Register here
                     </Button>
                 </Form.Item>
             </Form>

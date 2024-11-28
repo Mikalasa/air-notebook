@@ -11,7 +11,6 @@ const SideMenuFooter = () => {
     const dispatch = useDispatch();
 
     const showModal = () => {
-        // 每次打开 Modal 时更新 deletedNotes
         const updatedDeletedNotes = JSON.parse(localStorage.getItem('deletedData')) || [];
         setDeletedNotes(updatedDeletedNotes);
         setIsModalVisible(true);
