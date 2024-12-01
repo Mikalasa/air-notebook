@@ -6,17 +6,18 @@ import Checklist from '@editorjs/checklist';
 import CodeTool from '@editorjs/code';
 import Table from '@editorjs/table';
 import Warning from '@editorjs/warning';
+import xLog from '../../utility/xLog';
 
 const EditorComponent = ({ selectedNoteId }) => {
     const editorRef = useRef(null);
 
     useEffect(() => {
         if (!selectedNoteId) {
-            console.warn('No selectedNoteId provided, editor not initialized.');
+            xLog.warn('No selectedNoteId provided, editor not initialized.');
             return;
         }
 
-        console.log(`Initializing Editor.js for note ID: ${selectedNoteId}`);
+        xLog.info(`Initializing Editor.js for note ID: ${selectedNoteId}`);
 
         // prevent reinitialization
         if (editorRef.current) {
@@ -27,7 +28,7 @@ const EditorComponent = ({ selectedNoteId }) => {
         }
 
         const savedData = localStorage.getItem(`editorContent_${selectedNoteId}`);
-        console.log(`Loaded data for note ID ${selectedNoteId}:`, savedData);
+        xLog.info(`Loaded data for note ID ${selectedNoteId}:`, savedData);
 
         editorRef.current = new EditorJS({
             holder: 'editorjs',
@@ -58,7 +59,7 @@ const EditorComponent = ({ selectedNoteId }) => {
 
         return () => {
             if (editorRef.current && typeof editorRef.current.destroy === 'function') {
-                console.log(`Destroying Editor.js instance for note ID: ${selectedNoteId}`);
+                xLog.info(`Destroying Editor.js instance for note ID: ${selectedNoteId}`);
                 editorRef.current.destroy();
                 editorRef.current = null;
             }
