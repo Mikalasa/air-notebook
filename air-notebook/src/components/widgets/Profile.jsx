@@ -7,10 +7,10 @@ import RegisterModal from '../modal/RegisterModal';
 const { Header: Profile } = Layout;
 
 const CustomHeader = () => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false); // 用户登录状态
-    const [showLoginModal, setShowLoginModal] = useState(false); // 登录窗口
-    const [showRegisterModal, setShowRegisterModal] = useState(false); // 注册窗口
-    const [userData, setUserData] = useState({ username: '', avatar: '' }); // 用户数据
+    const [isLoggedIn, setIsLoggedIn] = useState(false); // User login status
+    const [showLoginModal, setShowLoginModal] = useState(false); // Login modal
+    const [showRegisterModal, setShowRegisterModal] = useState(false); // Register modal
+    const [userData, setUserData] = useState({ username: '', avatar: '' }); // User data
 
     useEffect(() => {
         const user = localStorage.getItem('user');
@@ -25,37 +25,70 @@ const CustomHeader = () => {
         localStorage.removeItem('user');
         setIsLoggedIn(false);
         setUserData({ username: '', avatar: '' });
-        message.success('已退出登录');
+        message.success('Logged out successfully');
     };
 
-    const handleLogin = (values) => {
+    const handleLogin = async (values) => {
         const { username, password } = values;
-        if (username && password) {
-            const demoAvatar = 'https://joeschmoe.io/api/v1/random';
-            const user = { username, avatar: demoAvatar };
-            localStorage.setItem('user', JSON.stringify(user));
-            setIsLoggedIn(true);
-            setUserData(user);
-            setShowLoginModal(false);
-            message.success(`欢迎回来，${username}`);
-        } else {
-            message.error('用户名或密码错误');
+
+        try {
+            const response = await fetch('http://localhost:5001/api/Users/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, password }),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                const user = { username: data.username, avatar: data.avatar || 'https://joeschmoe.io/api/v1/random' };
+                localStorage.setItem('user', JSON.stringify(user));
+                setIsLoggedIn(true);
+                setUserData(user);
+                setShowLoginModal(false);
+                message.success(`Welcome back, ${username}`);
+            } else {
+                const error = await response.text();
+                message.error(error || 'Failed to login');
+            }
+        } catch (error) {
+            message.error('Failed to connect to the server');
         }
     };
 
-    const handleRegister = (values) => {
+    const handleRegister = async (values) => {
         const { username, password, confirmPassword } = values;
+
         if (password !== confirmPassword) {
-            message.error('两次输入的密码不一致');
+            message.error('Passwords do not match');
             return;
         }
-        const demoAvatar = 'https://joeschmoe.io/api/v1/random';
-        const user = { username, avatar: demoAvatar };
-        localStorage.setItem('user', JSON.stringify(user));
-        setIsLoggedIn(true);
-        setUserData(user);
-        setShowRegisterModal(false);
-        message.success(`注册成功并已登录，欢迎 ${username}`);
+
+        try {
+            const response = await fetch('http://localhost:5001/api/Users/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, password, email: `${username}@example.com` }), // Replace with real email
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                const user = { username: data.username, avatar: 'https://joeschmoe.io/api/v1/random' };
+                localStorage.setItem('user', JSON.stringify(user));
+                setIsLoggedIn(true);
+                setUserData(user);
+                setShowRegisterModal(false);
+                message.success(`Registration successful, welcome ${username}`);
+            } else {
+                const error = await response.text();
+                message.error(error || 'Failed to register');
+            }
+        } catch (error) {
+            message.error('Failed to connect to the server');
+        }
     };
 
     const menu = (
@@ -66,7 +99,7 @@ const CustomHeader = () => {
                 onClick={handleLogout}
                 danger
             >
-                退出登录
+                Logout
             </Menu.Item>
         </Menu>
     );
@@ -106,16 +139,16 @@ const CustomHeader = () => {
                     )}
                     <span
                         className="avatar-username"
-                        title={userData.username || '未登录'}
+                        title={userData.username || 'Not logged in'}
                         style={{ marginLeft: 10 }}
                     >
-                        {userData.username || '未登录'}
+                        {userData.username || 'Not logged in'}
                     </span>
                 </div>
                 <div style={{ flex: 1, display: 'flex', justifyContent: 'center' }}></div>
             </Profile>
 
-            {/* 登录窗口 */}
+            {/* Login modal */}
             <LoginModal
                 visible={showLoginModal}
                 onClose={() => setShowLoginModal(false)}
@@ -126,7 +159,7 @@ const CustomHeader = () => {
                 }}
             />
 
-            {/* 注册窗口 */}
+            {/* Register modal */}
             <RegisterModal
                 visible={showRegisterModal}
                 onClose={() => setShowRegisterModal(false)}
